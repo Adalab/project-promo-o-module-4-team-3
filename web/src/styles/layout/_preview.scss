@@ -1,0 +1,113 @@
+.section__cards {
+	width: 100%;
+	background: linear-gradient(to bottom, #bfcdd0, #dde9ed);
+	padding: 38px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	@include tablet {
+		border-radius: 6px;
+	}
+	@include desktop {
+		flex: 1;
+	}
+}
+.card__preview {
+	.preview__reset {
+		cursor: pointer;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+		order: 1;
+		width: 75px;
+		height: 30px;
+		border: solid 1px white;
+		border-radius: 15px;
+		background-color: transparent;
+		&--icon {
+			order: -1;
+			color: $text-icon;
+			font-size: 12px;
+		}
+		&--text {
+			font-family: $font-index-subtitle;
+			font-size: 12px;
+			color: $text-icon;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.card__preview--default {
+	width: 240px;
+	height: 329px;
+	margin-top: 20px;
+	padding-top: 20px;
+	background-color: #fff;
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2), 0 1px 3px 0 rgba(0, 0, 0, 0.35);
+	.preview__text {
+		font-family: $font-card-title;
+		border-left: solid 5px #438792;
+
+		&--name {
+			margin-left: 20px;
+			font-weight: 700;
+			color: $text-index-subtitle;
+			padding-bottom: 4px;
+		}
+		&--role {
+			margin-left: 20px;
+			font-weight: 400;
+			color: $text-icon;
+			margin-top: 4px;
+		}
+	}
+	.preview__image {
+		width: 240px;
+		height: 200px;
+		background-image: url("../../images/default-photo.svg");
+		background-size: cover;
+		background-position: center center;
+		margin-top: 10px;
+	}
+	.preview__links {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
+		margin: 10px auto 12px 20px;
+		&--social {
+			width: 32px;
+			height: 32px;
+			border-radius: 16px;
+			border: solid 2px #a2deaf;
+			margin-right: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		&--icon {
+			color: $text-index-subtitle;
+			font-size: 18px;
+		}
+	}
+}
+
+//Responsive
+.card {
+	&__wrapper {
+		display: flex;
+		flex-direction: column;
+		background: linear-gradient(
+			to bottom,
+			$background-index,
+			$background-header 9%
+		);
+		@include tablet {
+			flex-direction: row-reverse;
+			justify-content: space-evenly;
+			padding: 20px 40px;
+			align-self: stretch;
+		}
+	}
+}
