@@ -16,7 +16,7 @@ server.listen(serverPort, () => {
 });
 
 // Escribimos los endpoints que queramos
-server.get("/card", (req, res) => {
+server.post("/card", (req, res) => {
   const responseSuccess = {
     sucess: true,
     cardURL: "{`http://localhost:4000/card/${cardId}`}",
@@ -35,19 +35,14 @@ server.get("/card", (req, res) => {
 
 // server.use(express.static(staticServerPath)); // le decimos al servidor que use el servidor estático de express
 
-
-
 server.get("/card/:cardId", (req, res) => {
   const htmlCode = `
         <!DOCTYPE html><html lang="es">
           <body>
             <h1>Hola</h1>
           </body>
-        </html>
-    }
-    res.send(
-        `;
+        </html>`;
+  res.send(htmlCode);
 });
-
 
 // crear SIEMPRE AL FINAL: endpoint para gestionar las rutas de ficheros que no existen
