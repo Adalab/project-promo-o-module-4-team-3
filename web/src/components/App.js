@@ -73,8 +73,19 @@ function App() {
 	};
 	const changeUrl = () => {
 		postToApi(data).then((dataFromApi) => {
+			console.log(dataFromApi);
 			setUrl(dataFromApi.cardURL);
 			setSuccess(dataFromApi.success);
+
+			// 	if (dataFromApi.success === true) {
+			// 		console.log("Entra en true");
+			// 		setUrl(dataFromApi.cardURL);
+			// 		setSuccess(dataFromApi.success);
+			// 	} else {
+			// 		console.log("Entra en false");
+			// 		setSuccess(success);
+			// 		setUrl(url);
+			// 	}
 		});
 	};
 

@@ -18,22 +18,28 @@ server.listen(serverPort, () => {
 // Escribimos los endpoints que queramos
 server.post("/card", (req, res) => {
 	const responseSuccess = {
-		sucess: true,
+		success: true,
 		cardURL: "{`http://localhost:4000/card/1323456`}",
 	};
 
 	const responseError = {
-		sucess: false,
-		error: "Error description",
+		success: false,
+		cardURL: "Error description",
 	};
 
-	res.json(responseSuccess);
+	if (
+		req.body.name !== "" &&
+		req.body.job !== "" &&
+		req.body.email !== "" &&
+		req.body.linkedin !== "" &&
+		req.body.github !== "" &&
+		req.body.photo !== ""
+	) {
+		res.json(responseSuccess);
+	} else {
+		res.json(responseError);
+	}
 });
-
-// servidor de estáticos
-// const staticServerPath = "./public";  // ruta de la carpeta donde vamos a guardar todos los ficheros estáticos
-
-// server.use(express.static(staticServerPath)); // le decimos al servidor que use el servidor estático de express
 
 server.get("/card/:cardId", (req, res) => {
 	const htmlCode = `
@@ -44,5 +50,9 @@ server.get("/card/:cardId", (req, res) => {
         </html>`;
 	res.send(htmlCode);
 });
+
+// servidor de estáticos
+const staticServerPath = "./src/public-react"; // ruta de la carpeta donde vamos a guardar todos los ficheros estáticos
+server.use(express.static(staticServerPath)); // le decimos al servidor que use el servidor estático de express
 
 // crear SIEMPRE AL FINAL: endpoint para gestionar las rutas de ficheros que no existen
