@@ -12,22 +12,22 @@ server.use(express.json());
 // Arrancamos el servidor en el puerto 4000
 const serverPort = 4000;
 server.listen(serverPort, () => {
-  console.log(`Server listening at http://localhost:${serverPort}`);
+	console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
 // Escribimos los endpoints que queramos
 server.post("/card", (req, res) => {
-  const responseSuccess = {
-    sucess: true,
-    cardURL: "{`http://localhost:4000/card/${cardId}`}",
-  };
+	const responseSuccess = {
+		sucess: true,
+		cardURL: "{`http://localhost:4000/card/1323456`}",
+	};
 
-  const responseError = {
-    sucess: false,
-    error: "Error description",
-  };
+	const responseError = {
+		sucess: false,
+		error: "Error description",
+	};
 
-  res.json(responseSuccess);
+	res.json(responseSuccess);
 });
 
 // servidor de estáticos
@@ -36,13 +36,13 @@ server.post("/card", (req, res) => {
 // server.use(express.static(staticServerPath)); // le decimos al servidor que use el servidor estático de express
 
 server.get("/card/:cardId", (req, res) => {
-  const htmlCode = `
+	const htmlCode = `
         <!DOCTYPE html><html lang="es">
           <body>
             <h1>Hola</h1>
           </body>
         </html>`;
-  res.send(htmlCode);
+	res.send(htmlCode);
 });
 
 // crear SIEMPRE AL FINAL: endpoint para gestionar las rutas de ficheros que no existen
