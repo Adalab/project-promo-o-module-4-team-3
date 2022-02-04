@@ -7,49 +7,50 @@ const server = express();
 
 // Configuramos el servidor
 server.use(cors());
-server.use(express.json());
+server.use(
+  express.json({
+    limit: "5mb",
+  })
+);
+server.set("view engine", "ejs");
 
 // Arrancamos el servidor en el puerto 4000
 const serverPort = 4000;
 server.listen(serverPort, () => {
-	console.log(`Server listening at http://localhost:${serverPort}`);
+  console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
 // Escribimos los endpoints que queramos
 server.post("/card", (req, res) => {
-	const responseSuccess = {
-		success: true,
-		cardURL: "{`http://localhost:4000/card/1323456`}",
-	};
+  const responseSuccess = {
+    success: true,
+    cardURL: "//localhost:4000/card/1323456",
+  };
 
-	const responseError = {
-		success: false,
-		cardURL: "Error description",
-	};
+  const responseError = {
+    success: false,
+    cardURL: null,
+  };
 
-	if (
-		req.body.name !== "" &&
-		req.body.job !== "" &&
-		req.body.email !== "" &&
-		req.body.linkedin !== "" &&
-		req.body.github !== "" &&
-		req.body.photo !== ""
-	) {
-		res.json(responseSuccess);
-	} else {
-		res.json(responseError);
-	}
+  if (
+    req.body.name !== "" &&
+    req.body.job !== "" &&
+    req.body.email !== "" &&
+    req.body.linkedin !== "" &&
+    req.body.github !== "" &&
+    req.body.photo !== ""
+  ) {
+    res.json(responseSuccess);
+  } else {
+    res.json(responseError);
+  }
 });
 
 server.get("/card/:cardId", (req, res) => {
-	const htmlCode = `
-        <!DOCTYPE html><html lang="es">
-          <body>
-            <h1>Hola</h1>
-          </body>
-        </html>`;
-	res.send(htmlCode);
+  res.render("card");
 });
+const staticServerStyles = "./web/src/styles/";
+server.use(express.static(staticServerStyles));
 
 // servidor de estáticos
 const staticServerPath = "./src/public-react"; // ruta de la carpeta donde vamos a guardar todos los ficheros estáticos
