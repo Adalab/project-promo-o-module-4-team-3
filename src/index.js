@@ -29,21 +29,45 @@ server.post("/card", (req, res) => {
 
   const responseError = {
     success: false,
-    cardURL: null,
+    // cardURL: null,
+    error: ""
   };
-
   if (
-    req.body.name !== "" &&
-    req.body.job !== "" &&
-    req.body.email !== "" &&
-    req.body.linkedin !== "" &&
-    req.body.github !== "" &&
-    req.body.photo !== ""
-  ) {
-    res.json(responseSuccess);
-  } else {
-    res.json(responseError);
-  }
+      req.body.name !== "" &&
+      req.body.job !== "" &&
+      req.body.email !== "" &&
+      req.body.linkedin !== "" &&
+      req.body.github !== "" &&
+      req.body.photo !== ""
+    ) {
+      res.json(responseSuccess);
+    } else if(req.body.name !== "") {
+      responseError.success;
+      responseError.error= "Debes completar el campo Nombre"
+    } else if(req.body.job !== "") {
+      responseError.error= "Debes completar el campo Puesto"
+    } else if(req.body.email !== "") {
+      responseError.error= "Debes completar el campo Email"
+    } else if(req.body.linkedin !== "") {
+      responseError.error= "Debes completar el campo Linkedin"
+    } else if(req.body.github !== "") {
+      responseError.error= "Debes completar el campo GitHub"
+    } else if(req.body.photo !== "") {
+      responseError.error= "Debes insertar una foto"
+    } 
+
+  // if (
+  //   req.body.name !== "" &&
+  //   req.body.job !== "" &&
+  //   req.body.email !== "" &&
+  //   req.body.linkedin !== "" &&
+  //   req.body.github !== "" &&
+  //   req.body.photo !== ""
+  // ) {
+  //   res.json(responseSuccess);
+  // } else {
+  //   res.json(responseError);
+  // }
 });
 
 server.get("/card/:cardId", (req, res) => {
