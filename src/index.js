@@ -1,6 +1,7 @@
 // Importamos los dos módulos de NPM necesarios para trabajar
 const express = require("express");
 const cors = require("cors");
+const Database = require("better-sqlite3");
 
 // Creamos el servidor
 const server = express();
@@ -20,13 +21,16 @@ server.listen(serverPort, () => {
 	console.log(`Server listening at http://localhost:${serverPort}`);
 });
 
+//DATABASE
+const db = new Database("./src/database.db", { verbose: console.log });
+
 // Escribimos los endpoints que queramos
 server.post("/card", (req, res) => {
 	const responseSuccess = {
 		success: true,
-		cardURL: "//localhost:4000/card/1323456",
+		cardURL: `//localhost:4000/card/12345`,
 	};
-
+	//Ahora estamo metiendo a pincho un ID 12345; ese id nos tienes que venir de la base de datos, pero todavía no estamos escribiendo en ella. Cómo llamamos
 	const responseError = {
 		success: false,
 		cardURL: null,
@@ -47,7 +51,14 @@ server.post("/card", (req, res) => {
 });
 
 server.get("/card/:cardId", (req, res) => {
-	res.render("card");
+	console.log(req.params);
+
+	// preparamos la query
+	const query = db.prepare("SELECT * FROM card1 WHERE id = ? ");
+	// ejecutamos la query
+	const card = query.get();
+	res.render("card", card);
+	//Necesitamos saber la ID que se generó en la tarjeta, que pasamos aquí como URL Param en :UrlID
 });
 
 // servidor de estáticos
