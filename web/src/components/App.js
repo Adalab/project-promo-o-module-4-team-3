@@ -12,109 +12,158 @@ import Preview from "./preview/Preview";
 import Landing from "./Landing";
 
 function App() {
-	const handleSubmit = (ev) => {
-		ev.preventDefault();
-	};
-	const [url, setUrl] = useState("");
-	const [success, setSuccess] = useState(false);
-	// const [avatar, setAvatar] = useState("");
-	const [data, setData] = useState(
-		ls.get("data", {
-			name: "",
-			job: "",
-			email: "",
-			phone: "",
-			linkedin: "",
-			github: "",
-			photo: "",
-			palette: "1",
-		})
-	);
+  //              STATES               //
 
-	useEffect(() => {
-		ls.set("data", data);
-	}, [data]);
+  // States for create card
+  const [url, setUrl] = useState("");
+  const [success, setSuccess] = useState(false);
 
-	/* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
+  // States for preview
+  const [data, setData] = useState(
+    ls.get("data", {
+      name: "",
+      job: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+      photo: "",
+      palette: "1",
+    })
+  );
 
-	const handleInput = (name, value) => {
-		const inputChanged = name;
-		setData({
-			...data,
-			[inputChanged]: value,
-		});
-	};
+  // States for collapsables:
+  const [collapsableDesign, setCollapsableDesign] = useState("");
+  const [arrowDesign, setArrowDesign] = useState("");
 
-	/* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
+  const [collapsableFill, setCollapsableFill] = useState("collapsed");
+  const [arrowFill, setArrowFill] = useState("");
 
-	const handleReset = () => {
-		setData({
-			name: "",
-			job: "",
-			email: "",
-			phone: "",
-			linkedin: "",
-			github: "",
-			photo: "",
-			palette: "1",
-		});
-	};
+  const [collapsableShare, setCollapsableShare] = useState("collapsed");
+  const [arrowShare, setArrowShare] = useState("");
 
-	// const handleClick = (ev) =>{
-	//   const clickButton = ev.currentTarget;
+  //             FUNCTIONS          //
+  useEffect(() => {
+    ls.set("data", data);
+  }, [data]);
 
-	//   // if (clickButton === )
+  // Function to handle collapsables
+  const handleCollapsable = (id) => {
+    const selected = id;
+    console.log(selected);
+    if (selected === "collapsableDesign") {
+      setCollapsableDesign("");
+      setArrowDesign("rotateArrowUp");
+      setCollapsableFill("collapsed");
+      setArrowFill("");
+      setCollapsableShare("collapsed");
+      setArrowShare("");
+    } else if (selected === "collapsableFill") {
+      setCollapsableDesign("collapsed");
+      setArrowDesign("");
+      setCollapsableFill("");
+      setArrowFill("rotateArrowUp");
+      setCollapsableShare("collapsed");
+      setArrowShare("");
+    } else if (selected === "collapsableShare") {
+      setCollapsableDesign("collapsed");
+      setArrowDesign("");
+      setCollapsableFill("collapsed");
+      setArrowFill("");
+      setCollapsableShare("");
+      setArrowShare("rotateArrowUp");
+    }
+  };
 
-	const updateAvatar = (avatar) => {
-		setData({
-			...data,
-			photo: avatar,
-		});
-	};
-	const changeUrl = () => {
-		postToApi(data).then((dataFromApi) => {
-			console.log(dataFromApi);
-			setUrl(dataFromApi.cardURL);
-			setSuccess(dataFromApi.success);
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+  };
 
-			// 	if (dataFromApi.success === true) {
-			// 		console.log("Entra en true");
-			// 		setUrl(dataFromApi.cardURL);
-			// 		setSuccess(dataFromApi.success);
-			// 	} else {
-			// 		console.log("Entra en false");
-			// 		setSuccess(success);
-			// 		setUrl(url);
-			// 	}
-		});
-	};
+  // Function to update inputs
+  /* Metemos en una constante el input sobre el que está actuando la usuaria con el ev.currentTarget.name. Llamamos a esa constante para cambiar el valor de la propiedad del objeto data */
+  const handleInput = (name, value) => {
+    const inputChanged = name;
+    setData({
+      ...data,
+      [inputChanged]: value,
+    });
+  };
 
-	return (
-		<div>
-			<Switch>
-				<Route exact path="/">
-					<Landing />
-				</Route>
-				<Route path="/designCard">
-					<main className="cards__main--wrapper">
-						<Header />
-						<section className="card__wrapper">
-							<Preview data={data} handleReset={handleReset} />
-							<Form
-								updateAvatar={updateAvatar}
-								data={data}
-								handleInput={handleInput}
-								url={url}
-								success={success}
-								changeUrl={changeUrl}
-							/>
-						</section>
-						<Footer />
-					</main>
-				</Route>
-			</Switch>
-		</div>
-	);
+  // Function to update image
+  const updateAvatar = (avatar) => {
+    setData({
+      ...data,
+      photo: avatar,
+    });
+  };
+
+  /* Al hacer click en el reset, llamamos a handleReset que vacía todas las propiedades del objeto */
+  const handleReset = () => {
+    setData({
+      name: "",
+      job: "",
+      email: "",
+      phone: "",
+      linkedin: "",
+      github: "",
+      photo: "",
+      palette: "1",
+    });
+  };
+
+  // Function to share the card
+  const shareUrl = () => {
+    postToApi(data).then((dataFromApi) => {
+      console.log(dataFromApi);
+      setUrl(dataFromApi.cardURL);
+      setSuccess(dataFromApi.success);
+
+      // 	if (dataFromApi.success === true) {
+      // 		console.log("Entra en true");
+      // 		setUrl(dataFromApi.cardURL);
+      // 		setSuccess(dataFromApi.success);
+      // 	} else {
+      // 		console.log("Entra en false");
+      // 		setSuccess(success);
+      // 		setUrl(url);
+      // 	}
+    });
+  };
+
+  return (
+    <div>
+      <Switch>
+        <Route exact path="/">
+          <Landing />
+        </Route>
+        <Route path="/designCard">
+          <main className="cards__main--wrapper">
+            <Header />
+            <section className="card__wrapper">
+              <Preview data={data} handleReset={handleReset} />
+              <Form
+                data={data}
+                url={url}
+                success={success}
+				collapsableDesign={collapsableDesign}
+                arrowDesign={arrowDesign}
+                collapsableFill={collapsableFill}
+                arrowFill={arrowFill}
+                collapsableShare={collapsableShare}
+                arrowShare={arrowShare}
+
+                updateAvatar={updateAvatar}
+                shareUrl={shareUrl}
+                handleInput={handleInput}
+				handleCollapsable={handleCollapsable}
+              />
+            </section>
+            <Footer />
+          </main>
+        </Route>
+      </Switch>
+    </div>
+  );
 }
 
 export default App;
