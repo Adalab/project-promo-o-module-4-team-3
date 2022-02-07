@@ -22,7 +22,7 @@ server.listen(serverPort, () => {
 });
 
 //DATABASE
-const db = new Database("./src/database.db", { verbose: console.log });
+const db = new Database("./src/db/DataBaseCards.db", { verbose: console.log });
 
 // Escribimos los endpoints que queramos
 server.post("/card", (req, res) => {
@@ -30,7 +30,8 @@ server.post("/card", (req, res) => {
 		success: true,
 		cardURL: `//localhost:4000/card/12345`,
 	};
-	//Ahora estamo metiendo a pincho un ID 12345; ese id nos tienes que venir de la base de datos, pero todavía no estamos escribiendo en ella. Cómo llamamos
+	//Ahora estamo metiendo a pincho un ID 12345; ese id nos tienes que venir de la base de datos, pero todavía no estamos escribiendo en ella.
+	//Meter toda la info del formulario en la base de datos ccon INSERT INTO, cogiendo todos los parametros que nos llegan por body - req.body.name, req.body.job....etc
 	const responseError = {
 		success: false,
 		cardURL: null,
@@ -56,7 +57,7 @@ server.get("/card/:cardId", (req, res) => {
 	// preparamos la query
 	const query = db.prepare("SELECT * FROM card1 WHERE id = ? ");
 	// ejecutamos la query
-	const card = query.get();
+	const card = query.get(12345);
 	res.render("card", card);
 	//Necesitamos saber la ID que se generó en la tarjeta, que pasamos aquí como URL Param en :UrlID
 });
