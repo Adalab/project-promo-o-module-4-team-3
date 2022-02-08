@@ -5,54 +5,70 @@ import Profile from "./fill/Profile";
 import Share from "./share/Share";
 
 const Form = (props) => {
+  const handleClickCollapsables = (ev) => {
+    props.handleCollapsable(ev.currentTarget.id);
+  };
   return (
     <form
-      action="#"
-      method="get"
+      // action="#"
+      // method="get"
       className="form js-form"
       //   onSubmit={handleSubmit}
     >
       <fieldset className="form__design">
-        <legend className="form__title js-design__title">
+        <legend
+          id="collapsableDesign"
+          className="form__title js-design__title"
+          onClick={handleClickCollapsables}
+        >
           <ul>
             <i className="form__title--icon icon-light far fa-object-ungroup"></i>
           </ul>
           <h2 className="form__title--text">Diseña</h2>
           <ul>
-            <i className="form__title--chevron icon-medium far fa-chevron-up"></i>
+            <i
+              className={`form__title--chevron icon-medium far fa-chevron-up ${props.arrowDesign}`}
+            ></i>
           </ul>
         </legend>
-        <div className="form__design--wrapper">
+        <div className={`form__design--wrapper ${props.collapsableDesign}`}>
           <label htmlFor="palette" className="form__label form__label--color">
             Colores
           </label>
           <div className="form__input--wrapper">
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="1"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="2"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
             <Palette
-              handleInput={props.handleInput}
               data={props.data}
               paletteColor="3"
+              collapsableDesign={props.collapsableDesign}
+              handleInput={props.handleInput}
             />
           </div>
         </div>
       </fieldset>
+
       <fieldset className="form__fill">
-        {/* linea 126 clase collapsed*/}
-        <legend className="form__title js-fill__title">
+        <legend
+          id="collapsableFill"
+          className="form__title js-fill__title"
+          onClick={handleClickCollapsables}
+        >
           <i className="form__title--icon far fa-keyboard"></i>
           <h2 className="form__title--text">Rellena</h2>
           <i className="form__title--chevron icon-medium far fa-chevron-down"></i>
         </legend>
-        <div className="form__fill--wrapper">
+        <div className={`form__fill--wrapper ${props.collapsableFill}`}>
           <Input
             type="text"
             label="Nombre Completo"
@@ -130,7 +146,10 @@ const Form = (props) => {
       <Share
         url={props.url}
         success={props.success}
-        changeUrl={props.changeUrl}
+        shareUrl={props.shareUrl}
+        collapsableShare={props.collapsableShare}
+        arrowShare={props.arrowShare}
+        handleCollapsable={props.handleCollapsable}
       />
     </form>
   );

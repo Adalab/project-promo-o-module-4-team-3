@@ -207,11 +207,17 @@
 
 // JAVASCRIPT
 
-.collapsed .form__share--wrapper,
-.collapsed .form__fill--wrapper,
-.collapsed .form__design--wrapper {
-  display: none;
+// .collapsed .form__share--wrapper,
+// .collapsed .form__fill--wrapper,
+// .collapsed .form__design--wrapper {
+//   display: none;
+// }
+.collapsed{
+	display: none;
 }
+.rotateArrowUp {
+	transform: rotate(180deg);
+  }
 
 .form__photothumb {
   height: 30px;
