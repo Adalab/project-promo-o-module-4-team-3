@@ -52,10 +52,10 @@ server.post("/card", (req, res) => {
 });
 
 server.get("/card/:cardId", (req, res) => {
-	console.log(req.params);
+	console.log(req.params.id);
 
 	// preparamos la query
-	const query = db.prepare("SELECT * FROM card1 WHERE id = ? ");
+	const query = db.prepare(`SELECT * FROM cards WHERE id = ? `);
 	// ejecutamos la query
 	const card = query.get(12345);
 	res.render("card", card);
