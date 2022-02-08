@@ -17,50 +17,42 @@
 			integrity="sha384AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 			crossorigin="anonymous"
 		/>
-		<title>React Startet Kit</title>
+		<title>Awesome Chicken Cards</title>
 	</head>
 	<body>
 		<section class="section__cards">
 			<div class="card__preview">
 				<div class="card__preview--default">
 					<div class="preview__text" js-borderleft>
-						<h3 class="preview__text--name" js-preview-name><%= %></h3>
-						<h4 class="preview__text--role" js-preview-job><%= %></h4>
+						<h3 class="preview__text--name"><%= name %></h3>
+						<h4 class="preview__text--role"><%= job %></h4>
 					</div>
-					<div class="preview__image" js__profile-image></div>
+					<div class="preview__image" style="background-image: url('<%= photo %>')"></div>
 					<div class="preview__links">
 						<a
-							href=" #  "
+							href="<%= phone %>"
 							class="preview__links--social"
-							js-preview-phone
-							js-border
 							title=" Phone  "
 							target=" _self  "
 							><i class="fas fa-mobile-alt preview__links--icon js-icons"></i>
 						</a>
 						<a
-							href=" #  "
+							href="<%= email %>"
 							class="preview__links--social"
-							js-preview-email
-							js-border
 							title=" Email  "
 							target=" _self  "
 							><i class="far fa-envelope preview__links--icon js-icons"></i>
 						</a>
 						<a
-							href=" #  "
+							href="<%= linkedin %>"
 							class="preview__links--social"
-							js-preview-linkedin
-							js-border
 							title=" Linkedin  "
 							target=" _self  "
 							><i class="fab fa-linkedin-in preview__links--icon js-icons"></i>
 						</a>
 						<a
-							href=" #  "
+							href="<%= github %>"
 							class="preview__links--social"
-							js-preview-github
-							js-border
 							title=" GitHub  "
 							target=" _self  "
 							><i class="fab fa-github-alt preview__links--icon js-icons"></i>

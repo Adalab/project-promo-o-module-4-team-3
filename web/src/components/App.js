@@ -50,7 +50,7 @@ function App() {
 	// Function to handle collapsables
 	const handleCollapsable = (id) => {
 		const selected = id;
-		console.log(selected);
+
 		if (selected === "collapsableDesign") {
 			setCollapsableDesign("");
 			setArrowDesign("rotateArrowUp");
