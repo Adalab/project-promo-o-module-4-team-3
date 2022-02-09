@@ -11,7 +11,7 @@ const Share = (props) => {
   const renderLink = () => {
     if (props.success && props.url) {
       return (
-        <>
+        <div className="sharewrapper">
           <h3 className="form__card--title">La tarjeta ha sido creada:</h3>
           <a
             className="form__card--link"
@@ -32,7 +32,7 @@ const Share = (props) => {
             <i className="form__twitter--icon fab fa-twitter"></i>Compartir en
             twitter
           </a>
-        </>
+        </div>
       );
     } else if (!props.success && props.url === null) {
       return (
