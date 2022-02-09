@@ -72,22 +72,22 @@ server.post("/card", (req, res) => {
 
     const fieldsWithError = [];
 
-    if (req.body.name !== "") {
+    if (!req.body.name) {
       fieldsWithError.push("nombre");
     }
-    if (req.body.job !== "") {
+    if (!req.body.job) {
       fieldsWithError.push("puesto");
     }
-    if (req.body.email !== "") {
+    if (!req.body.email) {
       fieldsWithError.push("email");
     }
-    if (req.body.linkedin !== "") {
+    if (!req.body.linkedin) {
       fieldsWithError.push("linkedin");
     }
-    if (req.body.github !== "") {
+    if (!req.body.github) {
       fieldsWithError.push("github");
     }
-    if (req.body.photo !== "") {
+    if (!req.body.photo) {
       fieldsWithError.push("foto");
     }
 
