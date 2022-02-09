@@ -34,13 +34,10 @@ const Share = (props) => {
           </a>
         </div>
       );
-    } else if (!props.success && props.url === null) {
-      return (
-        <p>
-          ¡Hola! Los campos con <span className="required">* </span>son
-          obligatorios.
-        </p>
-      );
+    } else if (!props.success && props.url !== null) {
+      return <p>¡Hola! {props.url}</p>;
+    } else {
+      return null;
     }
   };
 

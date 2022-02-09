@@ -1,5 +1,5 @@
 const postToApi = (userData) => {
-	return fetch("//localhost:4000/card", {
+	return fetch("/card", {
 		method: "POST",
 		body: JSON.stringify(userData),
 		headers: { "Content-Type": "application/json" },
