@@ -172,6 +172,8 @@
     align-items: center;
     padding-bottom: 20px;
     &--link {
+      width: 70%;
+      text-align: center;
       background-color: $twitter-button;
       padding: 6px 9px 6px 11px;
       font-size: 14px;
@@ -257,6 +259,8 @@
 .sharewrapper {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
   margin-bottom: 20px;
 }

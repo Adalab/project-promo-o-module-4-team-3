@@ -340,6 +340,7 @@ a:visited {
   }
 }
 .section__cards {
+  height: 100vh;
   align-items: center;
   background: linear-gradient(180deg, #bfcdd0, #dde9ed);
   display: flex;

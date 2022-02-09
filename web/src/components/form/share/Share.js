@@ -35,7 +35,7 @@ const Share = (props) => {
         </div>
       );
     } else if (!props.success && props.url !== null) {
-      return <p>¡Hola! {props.url}</p>;
+      return <p className = "form__card--title">Lo siento, {props.url}</p>;
     } else {
       return null;
     }

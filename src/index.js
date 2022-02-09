@@ -92,7 +92,7 @@ server.post("/card", (req, res) => {
     }
 
     const textAllFields = fieldsWithError.join(", ");
-    responseError.cardURL = `Debes completar los siguientes campos: ${textAllFields}`;
+    responseError.cardURL = `debes completar los siguientes campos: ${textAllFields}`;
 
     res.json(responseError);
   }
