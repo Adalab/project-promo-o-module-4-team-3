@@ -57,10 +57,9 @@ server.post("/card", (req, res) => {
       dataForCard.phone,
       dataForCard.palette
     );
-    console.log(newUserCardinDB);
     const responseSuccess = {
       success: true,
-      cardURL: `http://localhost:4000/card/${newUserCardinDB.lastInsertRowid}`,
+      cardURL: `https://module-4-team-3.herokuapp.com/card/${newUserCardinDB.lastInsertRowid}`,
       id: newUserCardinDB.lastInsertRowid,
     };
     res.json(responseSuccess);
@@ -99,13 +98,10 @@ server.post("/card", (req, res) => {
 });
 
 server.get("/card/:cardId", (req, res) => {
-  console.log(req.params.cardId);
-  console.log("hola", req.params);
   // preparamos la query
   const query = db.prepare(`SELECT * FROM cards WHERE id = ? `);
   // ejecutamos la query
   const card = query.get(req.params.cardId);
-  console.log(card);
   res.render("card", card);
   //Necesitamos saber la ID que se generó en la tarjeta, que pasamos aquí como URL Param en :UrlID
 });
