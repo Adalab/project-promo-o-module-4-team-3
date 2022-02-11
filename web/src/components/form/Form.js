@@ -10,8 +10,6 @@ const Form = (props) => {
   };
   return (
     <form
-      // action="#"
-      // method="get"
       className="form js-form"
       //   onSubmit={handleSubmit}
     >
@@ -102,7 +100,7 @@ const Form = (props) => {
             htmlFor="email"
             name="email"
             placeholder="Ej: sally-hill@gmail.com"
-            // pattern=""
+            //pattern="^[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[.][a-z0-9](?:[a-z0-9-]*[a-z0-9])?$"
             required={true}
             value={props.data.email}
             handleInput={props.handleInput}
@@ -114,7 +112,6 @@ const Form = (props) => {
             htmlFor="phone"
             name="phone"
             placeholder="Ej: 555-55-55-55"
-            // pattern=""
             required={false}
             value={props.data.phone}
             handleInput={props.handleInput}
@@ -124,8 +121,7 @@ const Form = (props) => {
             label="Linkedin"
             htmlFor="linkedin"
             name="linkedin"
-            placeholder="Ej: linkedin.com/in/sally.hill"
-            // pattern=""
+            placeholder="Ej: sally.hill"
             required={true}
             value={props.data.linkedin}
             handleInput={props.handleInput}
@@ -135,8 +131,7 @@ const Form = (props) => {
             label="Github"
             htmlFor="github"
             name="github"
-            placeholder="Ej: @sally-hill"
-            // pattern=""
+            placeholder="Ej: sally-hill"
             required={true}
             value={props.data.github}
             handleInput={props.handleInput}

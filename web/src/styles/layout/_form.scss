@@ -210,11 +210,6 @@
 
 // JAVASCRIPT
 
-// .collapsed .form__share--wrapper,
-// .collapsed .form__fill--wrapper,
-// .collapsed .form__design--wrapper {
-//   display: none;
-// }
 .collapsed {
   display: none;
 }
@@ -237,7 +232,7 @@
   color: $text-button;
   font-size: 14px;
   font-family: $font-index-subtitle;
-  padding: 3px 22px 7px 22px;
+  padding: 5px 22px 5px 22px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.32);
   border-radius: 3px;
   line-height: 20px;

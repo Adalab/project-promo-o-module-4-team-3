@@ -59,7 +59,8 @@ server.post("/card", (req, res) => {
     );
     const responseSuccess = {
       success: true,
-      cardURL: `https://module-4-team-3.herokuapp.com/card/${newUserCardinDB.lastInsertRowid}`,
+      cardURL: `//localhost:4000/card/${newUserCardinDB.lastInsertRowid}`,
+      //cardURL: `https://module-4-team-3.herokuapp.com/card/${newUserCardinDB.lastInsertRowid}`,
       id: newUserCardinDB.lastInsertRowid,
     };
     res.json(responseSuccess);
@@ -107,6 +108,9 @@ server.get("/card/:cardId", (req, res) => {
 });
 
 // SERVIDORES DE ESTÁTICOS
+//Servidor de Favicon
+const staticServerFavicon = "./src/images";
+server.use(express.static(staticServerFavicon));
 //Servidor de CSS
 const staticServerStyles = "./src/styles";
 server.use(express.static(staticServerStyles));
