@@ -59,8 +59,7 @@ server.post("/card", (req, res) => {
     );
     const responseSuccess = {
       success: true,
-      cardURL: `//localhost:4000/card/${newUserCardinDB.lastInsertRowid}`,
-      //cardURL: `https://module-4-team-3.herokuapp.com/card/${newUserCardinDB.lastInsertRowid}`,
+      cardURL: `https://module-4-team-3.herokuapp.com/card/${newUserCardinDB.lastInsertRowid}`,
       id: newUserCardinDB.lastInsertRowid,
     };
     res.json(responseSuccess);
